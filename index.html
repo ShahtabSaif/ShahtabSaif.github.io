@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shahtab Hossain — Developer &amp; Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a0f0d;
+    --surface: #121a17;
+    --surface-2: #17211d;
+    --line: #26332c;
+    --copper: #bf7a3d;
+    --copper-bright: #e3a868;
+    --pcb-green: #3d8361;
+    --silk: #ede9dd;
+    --text: #e7e4da;
+    --text-muted: #8fa096;
+    --radius: 3px;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    opacity:0.15;
+    pointer-events:none;
+    z-index:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ::selection{background:var(--copper); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--copper-bright); outline-offset:3px;}
+
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px; position:relative; z-index:1;}
+  section{padding:120px 0;}
+  @media (max-width:640px){ section{padding:80px 0;} .wrap{padding:0 20px;} }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--copper-bright);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:8px; height:8px;
+    background:var(--copper-bright);
+    border-radius:50%;
+    box-shadow:0 0 8px var(--copper-bright);
+  }
+
+  h1,h2,h3{font-family:var(--display); font-weight:600; letter-spacing:-0.01em;}
+
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(10,15,13,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1080px; margin:0 auto; padding:18px 32px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  @media (max-width:640px){ .nav-inner{padding:16px 20px;} }
+  .nav-logo{
+    font-family:var(--mono); font-size:14px; font-weight:600;
+    color:var(--silk); letter-spacing:0.05em;
+  }
+  .nav-logo span{color:var(--copper-bright);}
+  .nav-links{display:flex; gap:32px; font-family:var(--mono); font-size:13px;}
+  .nav-links a{color:var(--text-muted); transition:color .2s;}
+  .nav-links a:hover{color:var(--copper-bright);}
+  @media (max-width:640px){ .nav-links{gap:18px; font-size:12px;} }
+
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding-top:100px;
+    position:relative;
+  }
+  .hero-trace{
+    position:absolute;
+    top:50%; right:-60px; transform:translateY(-50%);
+    width:520px; max-width:45vw; opacity:0.9;
+  }
+  @media (max-width:900px){ .hero-trace{display:none;} }
+  .hero-content{max-width:640px; position:relative; z-index:2;}
+  .hero h1{
+    font-size:clamp(44px, 7vw, 76px);
+    line-height:1.02;
+    color:var(--silk);
+    margin-bottom:18px;
+  }
+  .hero .role{
+    font-family:var(--mono);
+    font-size:16px;
+    color:var(--pcb-green);
+    margin-bottom:28px;
+    letter-spacing:0.03em;
+  }
+  .hero .quote{
+    font-family:var(--display);
+    font-size:22px;
+    font-style:italic;
+    color:var(--copper-bright);
+    border-left:2px solid var(--copper);
+    padding-left:18px;
+    margin-bottom:24px;
+  }
+  .hero p.sub{
+    color:var(--text-muted);
+    font-size:16px;
+    max-width:480px;
+    margin-bottom:40px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    letter-spacing:0.04em;
+    padding:14px 26px;
+    border-radius:var(--radius);
+    transition:all .2s;
+    display:inline-block;
+  }
+  .btn-primary{
+    background:var(--copper);
+    color:var(--bg);
+    font-weight:600;
+  }
+  .btn-primary:hover{background:var(--copper-bright);}
+  .btn-ghost{
+    border:1px solid var(--line);
+    color:var(--text);
+  }
+  .btn-ghost:hover{border-color:var(--copper); color:var(--copper-bright);}
+
+  .about-grid{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:60px;
+    align-items:start;
+  }
+  @media (max-width:720px){ .about-grid{grid-template-columns:1fr; gap:32px;} }
+  .about-tag{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-muted);
+    line-height:2;
+    white-space:nowrap;
+  }
+  .about-body h2{font-size:36px; color:var(--silk); margin-bottom:24px;}
+  .about-body p{color:var(--text-muted); font-size:16px; max-width:560px; margin-bottom:16px;}
+  .about-body strong{color:var(--silk); font-weight:600;}
+  .about-quote{
+    margin-top:28px;
+    font-family:var(--display);
+    font-size:18px;
+    color:var(--pcb-green);
+    border-top:1px solid var(--line);
+    padding-top:20px;
+  }
+
+  .skills-header{margin-bottom:56px;}
+  .skills-header h2{font-size:36px; color:var(--silk);}
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .skill-card{
+    background:var(--surface);
+    padding:28px 24px;
+  }
+  .skill-card .designator{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--copper);
+    letter-spacing:0.1em;
+    margin-bottom:12px;
+  }
+  .skill-card h3{font-size:17px; color:var(--silk); margin-bottom:14px;}
+  .skill-card ul{list-style:none;}
+  .skill-card li{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--text-muted);
+    padding:4px 0;
+    display:flex; align-items:center; gap:8px;
+  }
+  .skill-card li::before{
+    content:'';
+    width:5px; height:5px;
+    background:var(--pcb-green);
+    flex-shrink:0;
+  }
+
+  .projects-header{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:56px; flex-wrap:wrap; gap:16px;
+  }
+  .projects-header h2{font-size:36px; color:var(--silk);}
+  .project-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line);}
+  .project-card{
+    background:var(--surface);
+    padding:36px;
+    display:grid;
+    grid-template-columns:100px 1fr auto;
+    gap:24px;
+    align-items:start;
+    transition:background .2s;
+  }
+  @media (max-width:720px){
+    .project-card{grid-template-columns:1fr; gap:14px;}
+  }
+  .project-card:hover{background:var(--surface-2);}
+  .project-id{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--copper);
+    letter-spacing:0.05em;
+    padding-top:4px;
+  }
+  .project-id .pin{
+    display:block;
+    width:28px; height:2px;
+    background:var(--copper);
+    margin-top:10px;
+  }
+  .project-main h3{font-size:20px; color:var(--silk); margin-bottom:4px;}
+  .project-main .kicker{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--pcb-green);
+    letter-spacing:0.04em;
+    display:block;
+    margin-bottom:12px;
+  }
+  .project-main p{color:var(--text-muted); font-size:14px; margin-bottom:14px; max-width:480px;}
+  .project-main ul.features{
+    list-style:none;
+    margin-bottom:16px;
+  }
+  .project-main ul.features li{
+    font-size:13px;
+    color:var(--text-muted);
+    padding:3px 0;
+    padding-left:16px;
+    position:relative;
+  }
+  .project-main ul.features li::before{
+    content:'›';
+    position:absolute;
+    left:0;
+    color:var(--copper);
+  }
+  .tech-tags{display:flex; gap:8px; flex-wrap:wrap;}
+  .tech-tags span{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--pcb-green);
+    border:1px solid var(--line);
+    padding:3px 9px;
+    border-radius:20px;
+  }
+  .project-link{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--copper-bright);
+    white-space:nowrap;
+    padding-top:4px;
+  }
+  .project-link:hover{text-decoration:underline;}
+  @media (max-width:720px){ .project-link{padding-top:0;} }
+
+  .connect{text-align:center;}
+  .connect h2{font-size:36px; color:var(--silk); margin-bottom:16px;}
+  .connect p{color:var(--text-muted); max-width:440px; margin:0 auto 48px;}
+  .pin-strip{
+    display:flex; justify-content:center; flex-wrap:wrap;
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    max-width:720px; margin:0 auto;
+  }
+  .pin{
+    flex:1 1 140px;
+    background:var(--surface);
+    padding:26px 20px;
+    text-align:center;
+    transition:background .2s;
+  }
+  .pin:hover{background:var(--surface-2);}
+  .pin .pin-label{
+    font-family:var(--mono);
+    font-size:10px;
+    color:var(--copper);
+    letter-spacing:0.1em;
+    display:block;
+    margin-bottom:8px;
+  }
+  .pin .pin-value{
+    font-family:var(--body);
+    font-size:14px;
+    color:var(--silk);
+    font-weight:500;
+  }
+
+  footer{
+    padding:48px 0;
+    text-align:center;
+    border-top:1px solid var(--line);
+  }
+  footer p{
+    font-family:var(--display);
+    font-style:italic;
+    font-size:15px;
+    color:var(--text-muted);
+    margin-bottom:8px;
+  }
+  footer span{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--line);
+    letter-spacing:0.1em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">SH<span>//</span>DEV</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#connect">Connect</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <svg class="hero-trace" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M10 40 H120 V90 H240 V40 H340 V150 H200 V220 H80 V270 H360"
+          stroke="#26332c" stroke-width="2" fill="none"/>
+    <path d="M10 40 H120 V90 H240 V40 H340 V150 H200 V220 H80 V270 H360"
+          stroke="#bf7a3d" stroke-width="2" fill="none" stroke-dasharray="6 10" opacity="0.5"/>
+    <circle r="4" fill="#e3a868">
+      <animateMotion dur="6s" repeatCount="indefinite"
+        path="M10 40 H120 V90 H240 V40 H340 V150 H200 V220 H80 V270 H360" />
+    </circle>
+    <circle cx="10" cy="40" r="5" fill="#3d8361"/>
+    <circle cx="240" cy="90" r="5" fill="#3d8361"/>
+    <circle cx="200" cy="150" r="5" fill="#3d8361"/>
+    <circle cx="360" cy="270" r="5" fill="#3d8361"/>
+    <text x="15" y="30" fill="#8fa096" font-family="JetBrains Mono" font-size="10">CODE</text>
+    <text x="300" y="290" fill="#8fa096" font-family="JetBrains Mono" font-size="10">DESIGN</text>
+  </svg>
+
+  <div class="wrap hero-content">
+    <div class="eyebrow">PORTFOLIO // SHAHTAB HOSSAIN</div>
+    <h1>Shahtab<br>Hossain</h1>
+    <div class="role">Developer &amp; Designer — Dhaka, Bangladesh</div>
+    <div class="quote">"Do it today or never."</div>
+    <p class="sub">A dedicated man with lots of passion and hope, working across circuit boards, mobile apps, and visual design.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#connect" class="btn btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-tag">
+      01 / ABOUT<br>
+      LOC: DHAKA<br>
+      STATUS: OPEN
+    </div>
+    <div class="about-body">
+      <h2>About</h2>
+      <p>I'm <strong>Shahtab Hossain</strong> — a developer and designer who loves bridging the gap between hardware and beautiful visuals. I work on everything from circuit boards to Canva designs and Android apps.</p>
+      <p>Currently leveling up my <strong>embedded systems</strong> and <strong>mobile development</strong> skills, while staying active on the design side with <strong>Photoshop</strong>, <strong>Illustrator</strong>, and <strong>Canva</strong>. Open to collaborations, freelance work, and cool projects.</p>
+      <div class="about-quote">"Design is not just what it looks like — it's how it works."</div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="skills-header">
+      <div class="eyebrow">02 // SKILLS &amp; TOOLS</div>
+      <h2>What I work with</h2>
+    </div>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <div class="designator">R1 — DESIGN</div>
+        <h3>Design</h3>
+        <ul>
+          <li>Photoshop</li>
+          <li>Illustrator</li>
+          <li>Canva</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="designator">R2 — EMBEDDED</div>
+        <h3>Embedded Systems</h3>
+        <ul>
+          <li>Arduino</li>
+          <li>Raspberry Pi</li>
+          <li>C++</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="designator">R3 — MOBILE</div>
+        <h3>Android Development</h3>
+        <ul>
+          <li>Kotlin</li>
+          <li>Android Studio</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <div class="designator">R4 — TOOLS</div>
+        <h3>Tools &amp; Editors</h3>
+        <ul>
+          <li>VS Code</li>
+          <li>Git</li>
+          <li>GitHub</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="projects-header">
+      <div>
+        <div class="eyebrow">03 // PROJECTS</div>
+        <h2>Selected work</h2>
+      </div>
+      <a href="https://github.com/ShahtabSaif?tab=repositories" target="_blank" rel="noopener" class="btn btn-ghost">All repos on GitHub</a>
+    </div>
+    <div class="project-list">
+
+      <div class="project-card">
+        <div class="project-id">U1<span class="pin"></span></div>
+        <div class="project-main">
+          <h3>NetTrace</h3>
+          <span class="kicker">Network Monitoring &amp; Analysis Tool</span>
+          <p>Monitors, traces, and visualizes network activity in real time — helping identify connectivity issues, analyze traffic patterns, and surface performance insights through an intuitive interface.</p>
+          <ul class="features">
+            <li>Real-time network monitoring</li>
+            <li>Traffic analysis and visualization</li>
+            <li>Performance tracking and diagnostics</li>
+            <li>Efficient data processing and reporting</li>
+          </ul>
+          <div class="tech-tags"><span>Java</span><span>Maven</span><span>Docker</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/ShahtabSaif/NetTrace" target="_blank" rel="noopener">View repo →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-id">U2<span class="pin"></span></div>
+        <div class="project-main">
+          <h3>LocaTask</h3>
+          <span class="kicker">Location-Based Task Management System</span>
+          <p>A smart task manager that combines productivity with location awareness — create tasks and get reminded exactly when you arrive at the right place.</p>
+          <ul class="features">
+            <li>Location-based reminders and notifications</li>
+            <li>Task categorization and prioritization</li>
+            <li>Clean, responsive interface</li>
+            <li>Contextual, location-aware productivity</li>
+          </ul>
+          <div class="tech-tags"><span>Kotlin</span><span>Jetpack Compose</span><span>Android</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/ShahtabSaif/LocaTask" target="_blank" rel="noopener">View repo →</a>
+      </div>
+
+      <div class="project-card">
+        <div class="project-id">U3<span class="pin"></span></div>
+        <div class="project-main">
+          <h3>UniMail</h3>
+          <span class="kicker">University Communication &amp; Email Management Platform</span>
+          <p>A centralized communication platform that simplifies email management within a university setting, streamlining interactions between students, faculty, and staff.</p>
+          <ul class="features">
+            <li>Centralized email communication system</li>
+            <li>Organized inbox and notification management</li>
+            <li>Improved communication between stakeholders</li>
+            <li>Secure, efficient message handling</li>
+          </ul>
+          <div class="tech-tags"><span>Kotlin</span><span>Android</span><span>Gmail API</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/ShahtabSaif/UniMail" target="_blank" rel="noopener">View repo →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="wrap connect">
+    <div class="eyebrow" style="justify-content:center;">04 // CONNECT</div>
+    <h2>Let's build something</h2>
+    <p>Open to collaborations, freelance work, and cool projects. Reach out on whichever channel works for you.</p>
+    <div class="pin-strip">
+      <a class="pin" href="mailto:shahtabhossain05@gmail.com">
+        <span class="pin-label">EMAIL</span>
+        <span class="pin-value">Gmail</span>
+      </a>
+      <a class="pin" href="https://github.com/ShahtabSaif" target="_blank" rel="noopener">
+        <span class="pin-label">CODE</span>
+        <span class="pin-value">GitHub</span>
+      </a>
+      <a class="pin" href="https://www.linkedin.com/in/shahtab-hossain-883758372/" target="_blank" rel="noopener">
+        <span class="pin-label">WORK</span>
+        <span class="pin-value">LinkedIn</span>
+      </a>
+      <a class="pin" href="https://wa.me/8801888380887" target="_blank" rel="noopener">
+        <span class="pin-label">CHAT</span>
+        <span class="pin-value">WhatsApp</span>
+      </a>
+      <a class="pin" href="https://www.facebook.com/shahtab.saif" target="_blank" rel="noopener">
+        <span class="pin-label">SOCIAL</span>
+        <span class="pin-value">Facebook</span>
+      </a>
+      <a class="pin" href="https://www.instagram.com/shahtab_saif/" target="_blank" rel="noopener">
+        <span class="pin-label">VISUAL</span>
+        <span class="pin-value">Instagram</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>"Do it today or never."</p>
+  <span>© 2026 SHAHTAB HOSSAIN — BUILT WITH CODE &amp; DESIGN</span>
+</footer>
+
+</body>
+</html>
